@@ -46,6 +46,19 @@ main {
   height: 100px;
 }
 
+.vehicle-detail-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.vehicle-detail-container .vehicle-image img {
+  max-width: 100%;
+}
+
+.vehicle-detail-container .vehicle-info {
+  padding: 1em;
+}
+
 /* Large Screens */
 @media screen and (min-width: 768px) {
   .car-highlight {
@@ -66,5 +79,14 @@ main {
     display: inline-block;
     width: 45%;
     margin: 1em;
+  }
+
+  .vehicle-detail-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .vehicle-image, .vehicle-info {
+    flex-basis: 45%;
   }
 }
