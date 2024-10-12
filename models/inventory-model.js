@@ -44,6 +44,11 @@ async function getVehicleById(inv_id) {
   }
 }
 
+async function addInventory(data) {
+  const sql = "INSERT INTO inventory (classification_id, inv_make) VALUES ($1, $2) RETURNING *";
+  return await pool.query(sql, [data.classification_id, data.inv_make]);
+}
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId, // Add this export

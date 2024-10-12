@@ -1,0 +1,9 @@
+<h1>Add Inventory Item</h1>
+<form action="/inv/add-inventory" method="post">
+  <label for="classificationList">Classification:</label>
+  <%= classificationList %>
+  <label for="invMake">Make:</label>
+  <input type="text" id="invMake" name="inv_make" required value="<%= locals.inv_make %>" />
+  <!-- Add other fields for inventory and make each field sticky -->
+  <button type="submit">Add Inventory Item</button>
+</form>

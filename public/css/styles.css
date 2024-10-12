@@ -59,6 +59,140 @@ main {
   padding: 1em;
 }
 
+/* Login Form Styling */
+main.login-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 2em;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.login-container h1 {
+  margin-bottom: 1em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"],
+button {
+  width: 100%;
+  padding: 0.8em;
+  margin-top: 0.5em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.flash-message {
+  color: red;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+/* Additional styles for the registration form in styles.css */
+
+main.register-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 2em;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.register-container h1 {
+  margin-bottom: 1em;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button {
+  width: 100%;
+  padding: 0.8em;
+  margin-top: 0.5em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #333;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.flash-message {
+  color: red;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+input:required:invalid {
+  border: 1px solid red;
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+input:required:valid {
+  border: 1px solid green;
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+/* Larger screen adjustment */
+@media screen and (min-width: 768px) {
+  main.register-container {
+    max-width: 500px;
+  }
+}
+
+
+/* Large Screens */
+@media screen and (min-width: 768px) {
+  main.login-container {
+    max-width: 500px;
+  }
+}
+
+
 /* Large Screens */
 @media screen and (min-width: 768px) {
   .car-highlight {

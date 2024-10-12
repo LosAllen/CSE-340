@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <nav>
+    <%= nav %>
+  </nav>
+  <main class="register-container">
+    <h1><%= title %></h1>
+
+    <!-- Flash Message -->
+    <% if (typeof flash !== "undefined" && flash.length > 0) { %>
+      <div class="flash-message">
+        <%= flash %>
+      </div>
+    <% } %>
+
+    <!-- Registration Form -->
+    <form action="/account/register" method="post">
+        <label for="account_firstname">First Name:</label>
+        <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
+      
+        <label for="account_lastname">Last Name:</label>
+        <input type="text" name="account_lastname" id="accountLastname" required value="<%= locals.account_lastname %>">
+      
+        <label for="account_email">Email:</label>
+        <input type="email" name="account_email" id="accountEmail" required value="<%= locals.account_email %>">
+      
+        <label for="account_password">Password:</label>
+        <div>Password must be at least 12 characters, contain at least 1 number, 1 capital letter, and 1 special character.</div>
+        <input type="password" name="account_password" id="accountPassword" required
+               pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+               title="Password must be at least 12 characters long and contain 1 uppercase letter, 1 number, and 1 special character.">
+      
+        <button type="submit">Register</button>
+      </form>
+
+      <% if (errors) { %>
+        <ul class="notice">
+          <% errors.forEach(error => { %>
+            <li><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+  </main>
+</body>
+</html>

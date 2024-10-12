@@ -1,4 +1,5 @@
 const invModel = require("../models/inventory-model")
+const validate = require("./account-validation");
 const Util = {}
 
 /* ************************
@@ -80,5 +81,35 @@ Util.buildVehicleDetail = function(vehicle) {
   return vehicleHTML;
 }
 
+const { body } = require("express-validator");
 
-module.exports = Util
+validate.classificationRules = () => {
+  return [
+    body("classification_name")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Classification name is required.")
+      .isAlphanumeric()
+      .withMessage("No spaces or special characters allowed."),
+  ];
+};
+
+function handleErrors(controllerFunction) {
+  return async (req, res, next) => {
+    try {
+      await controllerFunction(req, res, next);
+    } catch (error) {
+      console.error(error);
+      next(error);
+    }
+  };
+}
+
+module.exports = {
+  getNav: Util.getNav,
+  buildClassificationGrid: Util.buildClassificationGrid,
+  buildVehicleDetail: Util.buildVehicleDetail,
+  handleErrors,
+  validate,
+};
