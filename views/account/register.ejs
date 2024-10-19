@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %></title>
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/public/css/styles.css">
 </head>
 <body>
   <nav>
@@ -21,7 +21,7 @@
     <% } %>
 
     <!-- Registration Form -->
-    <form action="/account/register" method="post">
+    <form action="./register.ejs" method="post">
         <label for="account_firstname">First Name:</label>
         <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
       
