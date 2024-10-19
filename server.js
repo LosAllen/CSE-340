@@ -16,6 +16,8 @@ const baseController = require("./controllers/baseController")
 const session = require("express-session")
 const pool = require('./database/')
 const bodyParser = require("body-parser");
+const cookieParser = require('cookie-parser');
+const utilities = require('./utilities');
 
 
 /* ***********************
@@ -23,7 +25,8 @@ const bodyParser = require("body-parser");
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
+app.set("layout", "./layouts/layout")
+
 
 /* ***********************
  * Middleware
@@ -38,6 +41,9 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+app.use(cookieParser());
+app.use(utilities.checkJWTToken);
+
 
 // Express Messages Middleware
 app.use(require('connect-flash')())

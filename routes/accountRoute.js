@@ -1,32 +1,30 @@
 const express = require("express");
-const router = express.Router();
-const utilities = require("../utilities");
+const router = new express.Router();
 const accountController = require("../controllers/accountController");
-const regValidate = require("../utilities/account-validation");
+const validate = require("../utilities/account-validation");
+const utilities = require("../utilities");
 
-// Route to display the login view
-router.get("/login", accountController.buildLogin);
-// Route to display the registration view
-router.get("/register", accountController.buildRegister);
-// Route to handle registration data submission
-router.post("/register", accountController.registerAccount);
+// Route to process login
 router.post(
-  "/register",
-  regValidate.registrationRules(),
-  regValidate.checkRegData,
-  utilities.handleErrors(accountController.registerAccount)
+  "/login",
+  validate.loginRules(),
+  validate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
 );
-router.post("/login", (req, res) => {
-    res.status(200).send("login process");
-  });
-// Error handler middleware
-router.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something went wrong!");
-});
-router.post(
-  "/register",
-  utilities.handleErrors(accountController.registerAccount)
-);
+
+// Route to render account management (needs login)
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildManagement));
 
 module.exports = router;
+
+// Route to render the account update view
+router.get("/update/:account_id", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountUpdate));
+
+// Route to handle the account update process
+router.post("/update", utilities.handleErrors(accountController.updateAccount));
+
+// Route to handle the password update process
+router.post("/update-password", utilities.handleErrors(accountController.updatePassword));
+
+// Route to handle logout
+router.get("/logout", utilities.handleErrors(accountController.logout));
