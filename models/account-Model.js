@@ -44,6 +44,5 @@ async function getAccountByEmail(account_email) {
     return new Error("No matching email found");
   }
 }
-
   
 module.exports = { addClassification, registerAccount };
