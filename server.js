@@ -18,7 +18,7 @@ const pool = require('./database/')
 const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 const utilities = require('./utilities');
-
+const reviewRoutes = require('./routes/reviewRoute');
 
 /* ***********************
  * view engine and templates
@@ -62,6 +62,7 @@ app.use(static)
 app.get("/", baseController.buildHome)
 app.use("/inv", inventoryRoute)
 app.use("/acc", accountRoute)
+app.use('/review', reviewRoutes);
 
 /* ***********************
  * Local Server Information

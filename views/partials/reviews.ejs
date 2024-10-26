@@ -1,0 +1,19 @@
+<% if (reviews && reviews.length > 0) { %>
+    <h3>Reviews:</h3>
+    <ul>
+      <% reviews.forEach(review => { %>
+        <li>
+          <strong><%= review.account_firstname %> <%= review.account_lastname %>:</strong>
+          <span>Rating: <%= review.rating %>/5</span>
+          <p><%= review.review_text %></p>
+          <% if (locals.account_id === review.account_id) { %>
+            <a href="/review/edit/<%= review.review_id %>">Edit</a>
+            <a href="/review/delete/<%= review.review_id %>">Delete</a>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No reviews yet. Be the first to write one!</p>
+  <% } %>
+  

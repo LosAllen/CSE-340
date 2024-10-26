@@ -4,4 +4,15 @@
   <%- vehicleHTML %>
 </main>
 
+<%- include('../partials/reviews', { reviews }) %>
+<form action="/review/add" method="post">
+  <input type="hidden" name="inv_id" value="<%= inv_id %>">
+  <input type="hidden" name="account_id" value="<%= account_id %>">
+  <label for="review_text">Review:</label>
+  <textarea name="review_text" id="review_text" required></textarea>
+  <label for="rating">Rating (1-5):</label>
+  <input type="number" name="rating" id="rating" min="1" max="5" required>
+  <button type="submit">Submit Review</button>
+</form>
+
 <%- include('../partials/footer') %>
